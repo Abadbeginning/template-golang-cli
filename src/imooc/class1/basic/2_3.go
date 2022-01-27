@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func enums()  {
+func enums() {
 	const (
 		cpp = iota
 		_
@@ -10,7 +10,7 @@ func enums()  {
 		golang
 		js
 	)
-	fmt.Println(cpp,js,python,golang)
+	fmt.Println(cpp, js, python, golang)
 
 	// b, kb, mb, gb, tb, pb
 	const (
