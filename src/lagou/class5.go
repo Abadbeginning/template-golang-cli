@@ -17,6 +17,7 @@ func sum1(a, b int) (int, int, error) {
 	if a < 0 || b < 0 || a+b < 3 {
 		return 0, 0, errors.New("a,b不能为负数，它们的和不能小于1")
 	}
+	
 	return a + b, a, nil
 }
 

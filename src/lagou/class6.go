@@ -6,23 +6,35 @@ type user struct {
 	id uint
 	userName string
 	addr address
-	*other
 }
 
 type address struct {
 	city string
 }
 
-type other struct {
-	sex uint
+type Stringer interface {
+    String() string
+}
+
+func (u user) String() string {
+	return fmt.Sprintf("the username is %s,id is %d",u.userName,u.id)
+}
+
+func printString(user fmt.Stringer){
+    fmt.Println(user.String())
 }
 
 func structDemo()  {
 	u := user{userName:"小明", id: 1, addr : address{
 		city: "美国",
 	}}
-	fmt.Println(u)
-	fmt.Println(u.addr.city)
+
+	// printString(u)
+
+	// 值接收者和指针接收者
+	printString(&u)
+	// fmt.Println(u)
+	// fmt.Println(u.addr.city)
 
 	// var u user
 	// fmt.Println(u)
