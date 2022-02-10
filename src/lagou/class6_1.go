@@ -13,16 +13,16 @@ type address struct {
 }
 
 type Stringer interface {
-    Show() string
+    show() string
 }
 
-func (u user) Show() string {
+func (u user) show() string {
 	fmt.Println("the username is -->",u.userName," |id is -->",u.id)
 	return "ok"
 }
 
 func printString(u Stringer) {
-	fmt.Println(u.Show())
+	fmt.Println(u.show())
 }
 
 func structDemo()  {
@@ -30,6 +30,7 @@ func structDemo()  {
 		city: "美国",
 	}}
 	printString(u)
+	printString(&u)
 	
 }
 
