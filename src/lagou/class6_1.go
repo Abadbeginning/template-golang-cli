@@ -2,38 +2,65 @@ package main
 
 import "fmt"
 
-type user struct {
-	id uint
-	userName string
-	addr address
+type users struct {
+	id        uint
+	usersName string
+	addr      addr
 }
 
-type address struct {
+type addr struct {
 	city string
 }
 
-type Stringer interface {
-    show() string
+type Stringser interface {
+	show() string
 }
 
-func (u user) show() string {
-	fmt.Println("the username is -->",u.userName," |id is -->",u.id)
+func (u *users) show() string {
+	fmt.Println("the usersname is -->", u.usersName, " |id is -->", u.id)
 	return "ok"
 }
 
-func printString(u Stringer) {
+func (addr addr) show() string {
+	fmt.Println("the addr is -->", addr.city)
+	return "ok"
+}
+
+//func (u users) show() string {
+//	fmt.Println("the usersname is -->",u.usersName," |id is -->",u.id)
+//	return "ok"
+//}
+
+func printStr(u Stringser) {
+	a, ok := u.(addr)
+	if ok {
+		fmt.Println("addr -->", a)
+	} else {
+		fmt.Println("不是addr")
+	}
+
+	b, ok1 := u.(*users)
+	if ok1 {
+		fmt.Println("*users -->", b)
+	} else {
+		fmt.Println("不是*users")
+	}
+
 	fmt.Println(u.show())
 }
 
-func structDemo()  {
-	u := user{userName:"小明", id: 1, addr : address{
+func structShow() {
+	u := users{usersName: "小明", id: 1, addr: addr{
 		city: "美国",
 	}}
-	printString(u)
-	printString(&u)
-	
+
+	address := addr{city: "美国"}
+
+	printStr(address)
+	printStr(&u)
+
 }
 
 func main() {
-	structDemo()
+	structShow()
 }
